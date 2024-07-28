@@ -1,0 +1,33 @@
+<%- layout('./layout/boilerplates') %> 
+
+<section class="container">
+</section>
+<script>
+    console.log('hello world')
+    const sectionEl = document.querySelector('section')
+    const showAllUser = async () => {
+        const res = await fetch('/facebook/users/admin', {
+
+        })
+
+        const data = await res.json();
+        console.log(data)
+
+        data.forEach(user => {
+            sectionEl.innerHTML += `
+            <p>username: <sapn class="firstname">${user.username}</span></p>
+            <p>password:  <span class="lastname">${user.password}</span> </p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            `
+        });
+
+        console.log(data)
+
+    }
+
+    showAllUser()
+</script>

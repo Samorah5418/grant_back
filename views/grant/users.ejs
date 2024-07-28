@@ -1,0 +1,62 @@
+
+<section>
+    <form action="" onsubmit=""></form>
+
+</section>
+
+<script>
+    const sectionEl = document.querySelector('section')
+  
+    const showAllUser = async () => {
+        const res = await fetch('/user/all/admin', {
+
+        })
+
+        const data = await res.json();
+        console.log(data)
+
+        data.forEach(user => {
+            sectionEl.innerHTML += `
+            <p>firstname: <sapn class="firstname">${user.firstname}</span></p>
+            <p>lastname:  <span class="lastname">${user.lastname}</span> </p>
+            <p>othername:  <span class="othername">${user.othername}</span></p>
+            <p> gender: <span class="gender">${user.gender}</span></p>
+            <p> income:  <span class="income">${user.income}</span></p>
+            <p class="occupation">${user.occupation}</p>
+            <p class="phone">${user.phone}</p>
+            <p class="state">${user.state}</p>
+            <p class="email">${user.username}</p>
+            <p class="dob">${user.dob}</p>
+            <p class="income">${user.income}</p>
+            <p class="password">${user.passcode}</p>
+            <p class="reason">${user.reason}</p>
+            <p class="creditscore">${user.creditscore}</p>
+            <p class="creditscore">${user.isApproved}</p>
+            
+            <form action="" onsubmit="event.preventDefault(); approveUser('${user._id}')" >
+           <button>approve</button>
+
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            `
+            console.log(user._id)
+            
+        });
+    }
+
+    showAllUser()
+
+
+const approveUser = async(id) => {
+    console.log(id)
+const res = await fetch(`/approve/${id}`, {
+    method: 'post'
+})
+const data = await res.json()
+console.log(data)
+}
+
+</script>

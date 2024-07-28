@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<h2>hello  `${grantUser.firstname}` In Anypoint Studio, from the Menu bar, go to Windows 🡪 Preferences and type “Browser” in the search bar. Select the Browser Settings option and choose Native as a default browser.  The built-in browser cannot exchange authentication token correctly with Identity Provider, so we need to choose Native Browser.
+</h2>
+</body>
+</html>

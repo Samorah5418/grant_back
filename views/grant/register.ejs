@@ -1,0 +1,114 @@
+<% layout('./layout/boilerplates.ejs') %>
+
+<div class="container">
+    <form class="row g-3" novalidate enctype="multipart/form-data" action="/dashboard">
+        <div class="col-md-6">
+          <label for="firstname" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstname" name="firstname" required>
+        </div>
+        <div class="col-md-6">
+            <label for="othername" class="form-label">Other name</label>
+            <input type="text" class="form-control" id="othername" name="othername" required>
+          </div>
+        <div class="col-md-6">
+          <label for="lastname" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastname" name="lastname" required>
+          
+        </div>
+        <div class="col-md-6">
+            <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control" id="state" name="state" required>
+          
+          </div>
+          <div class="col-md-6">
+            <label for="occupation" class="form-label">Occupation</label>
+            <input type="text" class="form-control" id="occupation" name="occupation" required>
+        
+          </div>
+          <div class="col-md-6">
+            <label for="income" class="form-label">Income</label>
+            <input type="text" class="form-control" id="income" name="income" required>
+        
+          </div>
+          <div class="col-md-6">
+            <label for="creditscore" class="form-label">credit score</label>
+            <input type="text" class="form-control" id="creditscore" name="creditscore" required>
+          </div>
+          <div class="col-md-4">
+            <label for="gender" class="form-label">gender</label>
+            <input type="text" class="form-control" id="gender" name="gender" >
+          </div>
+          <div class="col-md-4">
+            <label for="amount" class="form-label">amount</label>
+            <input type="text" class="form-control" id="amount" name="amount" >
+          </div>
+          <div class="col-md-4">
+            <label for="number" class="form-label">number</label>
+            <input type="text" class="form-control" id="number" name="phone" >
+          </div>
+          <div class="col-md-4">
+            <label for="address" class="form-label">address</label>
+            <input type="text" class="form-control" id="address" name="address" >
+          </div>
+          <div class="col-md-4">
+            <label for="reason">reason</label>
+            <textarea name="reason" id="reason" cols="30" rows="10"></textarea>
+          </div>
+          <div class="col-md-4">
+            <label for="validationServer01" class="form-label">dob</label>
+            <input type="date" class="form-control" id="dob" name="dob" >
+          </div>
+          <div class="col-md-4">
+            <label for="validationServer01" class="form-label">email</label>
+            <input type="email" class="form-control" id="validationServer01" name="username" >
+          </div>
+      
+          <div class="col-md-4">
+            <label for="validationServer01" class="form-label">password</label>
+            <input type="text" class="form-control" id="password" name="password" >
+          </div>
+          <div class="col-md-4">
+            <label for="passcode" class="form-label">enter password again</label>
+            <input type="text" class="form-control" id="passcode" name="passcode" >
+          </div>
+          <div class="col-md-4">
+            <label for="image" class="form-label">image</label>
+            <input type="file" class="form-control" id="image" name="image" >
+          </div>
+          
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+    </div>
+
+
+    <script>
+      const form = document.querySelector('form')
+      const file = document.querySelector('#image')
+      form.addEventListener('submit', async(e) => {
+        e.preventDefault()
+        const formData = new FormData(form);
+        form.append('image', file.files[0])
+        for(data of formData) {
+          console.log(data[0], data[1])
+        }
+      
+    
+          const res = await fetch('/register', {
+            method: 'POST',
+            body: formData,
+       
+          })
+          const data2 = await res.json();
+          console.log(data2)
+          if(data2._id) {
+            localStorage.setItem('userid', data2._id)
+            // form.submit()
+            console.log('user registered')
+          }
+         
+      })
+    </script>
+</body>
+</html> 

@@ -1,0 +1,31 @@
+<%- layout('./layout/boilerplates') %> 
+
+<form action="">
+    <label for="email">email</label>
+    <input type="text" name="username" id="email">
+    <label for="password">password</label>
+    <input type="text" name="password" id="password">
+    <button>submit</button>
+</form>
+
+
+
+<script>
+    const form = document.querySelector('form')
+    form.addEventListener('submit', async(e) => {
+        e.preventDefault()
+      const formData = new FormData(form);
+      const formDataSerialized = Object.fromEntries(formData)
+      console.log(formDataSerialized)
+        e.preventDefault();
+        const res = await fetch('/facebook/signup', {
+          method: 'POST',
+          headers: {'Content-Type': 'Application/json'},
+          body: JSON.stringify(formDataSerialized)
+        })
+        const data = await res.json();
+        console.log(data)
+        console.log('login')
+    })
+    </script>
+

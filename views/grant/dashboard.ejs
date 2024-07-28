@@ -1,0 +1,49 @@
+<% layout('./layout/boilerplates.ejs') %>
+
+<section>
+  <form action="" class="logout">
+    <button>logout</button>
+  </form>
+</section>
+
+<script>
+  const logOutForm = document.querySelector(".logout");
+  const btn = document.querySelector("button");
+
+  logOutForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("hello world");
+  });
+
+  const sectionEl = document.querySelector("section");
+  const getUser = async () => {
+    const userid = localStorage.getItem("userid");
+    const res = await fetch(`/user/${userid}`, {});
+    const user = await res.json();
+
+    sectionEl.innerHTML += `
+            <p>firstname: <sapn class="firstname">${user.firstname}</span></p>
+            <p>lastname:  <span class="lastname">${user.lastname}</span> </p>
+            <p>othername:  <span class="othername">${user.othername}</span></p>
+            <p> gender: <span class="gender">${user.gender}</span></p>
+            <p> income:  <span class="income">${user.income}</span></p>
+            <p class="occupation">${user.occupation}</p>
+            <p class="phone">${user.phone}</p>
+            <p class="state">${user.state}</p>
+            <p class="email">${user.username}</p>
+            <p class="dob">${user.dob}</p>
+            <p class="income">${user.income}</p>
+            <p class="password">${user.passcode}</p>
+            <p class="reason">${user.reason}</p>
+            <p class="creditscore">${user.creditscore}</p>
+            <img src="${'img'}" width="50rem" alt="userimage" >
+
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            <p>--------------------------------------------</p>
+            `;
+  };
+  getUser();
+</script>
